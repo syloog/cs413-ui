@@ -49,7 +49,7 @@ function ApplyButton({ job }) {
     var userID = UserProfile.getEmployeeID();
 
     fetch(
-      "http://localhost:8080/employee/" + userID + "/jobPost/" + job[0],
+      "http://127.0.0.1:8080/employee/" + userID + "/jobPost/" + job[0],
       requestOptions
     )
       .then((response) => response.text())
@@ -106,6 +106,8 @@ class MyApplications extends React.Component {
     this.state = {
       jobPostList: [],
       myPosts: [],
+      userID: UserProfile.getEmployeeID(),
+      userName: UserProfile.getFirstName() + " " + UserProfile.getSurname(),
     };
   }
 
@@ -115,35 +117,61 @@ class MyApplications extends React.Component {
       redirect: "follow",
     };
 
-    var userID = UserProfile.getEmployeeID();
+    fetch(
+      "http://127.0.0.1:8080/employee/" + this.state.userID + "/applications",
+      requestOptions
+    )
+      .then((response) => response.json())
+      .then((result) => {
+        result.forEach((element) => {
+          let listItem = [
+            element.answer,
+            element.applicationDate,
+            element.jobName,
+            element.companyName,
+            element.type,
+            element.salary,
+            element.address,
+            element.position,
+            element.expectation,
+            element.applicantCount,
+            element.startDate,
+            element.endDate,
+            element.evaluationDate,
+          ];
 
-    fetch("http://127.0.0.1:8080/employee/" + userID + "/applications", requestOptions)
-    .then((response) => response.json())
-    .then((result) => {
-      result.forEach((element) => {
-        let listItem = [
-          element.answer,
-          element.applicationDate,
-          element.jobName,
-          element.companyName,
-          element.type,
-          element.salary,
-          element.address,
-          element.position,
-          element.expectation,
-          element.applicantCount,
-          element.startDate,
-          element.endDate,
-          element.evaluationDate,
-        ];
-
-        this.state.myPosts.push(listItem);
-      });
-      this.setState({});
-    })
-    .catch((error) => console.log("error", error));
+          this.state.myPosts.push(listItem);
+        });
+        this.setState({});
+      })
+      .catch((error) => console.log("error", error));
 
     fetch("http://127.0.0.1:8080/employee/jobPost/Long-term", requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        result.forEach((element) => {
+          let listItem = [
+            element.jobPostId,
+            element.jobName,
+            element.companyName,
+            element.type,
+            element.salary,
+            element.address,
+            element.position,
+            element.expectation,
+            element.applicantCount,
+            element.startDate,
+            element.endDate,
+            element.evaluationDate,
+          ];
+
+          this.state.jobPostList.push(listItem);
+        });
+        this.setState({});
+      })
+      .catch((error) => console.log("error", error));
+
+    fetch("http://127.0.0.1:8080/employee/jobPost/Freelancer", requestOptions)
       .then((response) => response.json())
       .then((result) => {
         result.forEach((element) => {
@@ -218,7 +246,7 @@ class MyApplications extends React.Component {
               before.
             </p>
             <p>
-              <Table striped bordered hover variant="dark" responsive>
+              <Table striped bordered hover variant="light" responsive>
                 <thead>
                   <tr>
                     <th>Answer</th>
@@ -248,7 +276,7 @@ class MyApplications extends React.Component {
               In the list below, you can see detailed information for job posts.
             </p>
             <p>
-              <Table striped bordered hover variant="dark" responsive>
+              <Table striped bordered hover variant="light" responsive>
                 <thead>
                   <tr>
                     <th>Post ID</th>
@@ -271,10 +299,7 @@ class MyApplications extends React.Component {
             </p>
           </Jumbotron>
         </Tab>
-        <Tab
-          eventKey="profile"
-          title={UserProfile.getFirstName() + " " + UserProfile.getSurname()}
-        ></Tab>
+        <Tab eventKey="profile" title={this.state.userName} disabled></Tab>
       </Tabs>
     );
   }

@@ -45,7 +45,7 @@ class Welcome extends React.Component {
                   </Header>
         
                   <Button as={Link} 
-                    to= "/loginemployee" >    
+                    to= "/logincompany" >    
                     Select
                     </Button>
                 </Grid.Column>

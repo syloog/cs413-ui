@@ -4,6 +4,7 @@ import { useHistory, Link } from "react-router-dom";
 import "./App.css";
 import { toast } from "react-toastify";
 import "semantic-ui-css/semantic.min.css";
+import CompanyProfile from "./CompanyProfile";
 
 const LoginEmployee = () => {
   const history = useHistory();
@@ -31,7 +32,7 @@ const LoginEmployee = () => {
     e.preventDefault();
 
     fetch(
-      `http://localhost:8080/company/${usernamePassword.username}/${usernamePassword.password}`,
+      `http://127.0.0.1:8080/company/${usernamePassword.username}/${usernamePassword.password}`,
       {
         method: "GET",
         headers: {
@@ -45,9 +46,27 @@ const LoginEmployee = () => {
 
         let data = JSON.parse(result);
 
-        setTimeout(() => {
-          history.push("/jobapplications");
-        }, 3000);
+        fetch(`http://127.0.0.1:8080/company/${data}`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/raw",
+          },
+        })
+          .then((response) => response.json())
+          .then((result) => {
+            toast.success("Successful, please wait...");
+
+            const {companyId, name, address, phone, email} = result;
+
+            CompanyProfile.createProfile(name, address, phone, email, companyId);
+
+            setTimeout(() => {
+              history.push("/jobapplications");
+            }, 1);
+          })
+          .catch((e) => {
+            toast.error("e.message");
+          });
       })
       .catch((e) => {
         toast.error("e.message");

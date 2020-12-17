@@ -1,128 +1,79 @@
 var CompanyProfile = (function () {
-    var username;
-    var firstName;
-    var surName;
-    var phone;
-    var email;
-    var age;
-    var cv;
-    var employeeID;
-  
-    var createProfile = function (username, firstName, surName, phone, email, age, cv, employeeID) {
-      this.username = username;
-      this.firstName = firstName;
-      this.surName = surName;
-      this.phone = phone;
-      this.email = email;
-      this.age = age;
-      this.cv = cv;
-      this.employeeID = employeeID;
-    };
-  
-    var clearAllInfo = function () {
-      this.username = null;
-      this.firstName = null;
-      this.surName = null;
-      this.phone = null;
-      this.email = null;
-      this.age = null;
-      this.cv = null;
-      this.employeeID = null;
-    };
-  
-    var getUsername = function () {
-      return username; // Or pull this from cookie/localStorage
-    };
-  
-    var setUsername = function (username) {
-      this.username = username;
-      // Also set this in cookie/localStorage
-    };
-  
-    var getFirstName = function () {
-      return firstName; // Or pull this from cookie/localStorage
-    };
-  
-    var setFirstName = function (firstName) {
-      this.firstName = firstName;
-      // Also set this in cookie/localStorage
-    };
-  
-    var getSurname = function () {
-      return surName; // Or pull this from cookie/localStorage
-    };
-  
-    var setSurname = function (surName) {
-      this.surName = surName;
-      // Also set this in cookie/localStorage
-    };
-  
-    var getPhone = function () {
-      return phone; // Or pull this from cookie/localStorage
-    };
-  
-    var setPhone = function (phone) {
-      this.phone = phone;
-      // Also set this in cookie/localStorage
-    };
-  
-    var getEmail = function () {
-      return email; // Or pull this from cookie/localStorage
-    };
-  
-    var setEmail = function (email) {
-      this.email = email;
-      // Also set this in cookie/localStorage
-    };
-  
-    var getAge = function () {
-      return age; // Or pull this from cookie/localStorage
-    };
-  
-    var setAge = function (age) {
-      this.age = age;
-      // Also set this in cookie/localStorage
-    };
-  
-    var getCV = function () {
-      return cv; // Or pull this from cookie/localStorage
-    };
-  
-    var setCV = function (cv) {
-      this.cv = cv;
-      // Also set this in cookie/localStorage
-    };
-  
-    var setEmployeeID = function () {
-      return employeeID; // Or pull this from cookie/localStorage
-    };
-  
-    var getEmployeeID = function (employeeID) {
-      this.employeeID = employeeID;
-      // Also set this in cookie/localStorage
-    };
-  
-    return {
-      getName: getUsername,
-      setName: setUsername,
-      getFirstName: getFirstName,
-      setFirstName: setFirstName,
-      getSurname: getSurname,
-      setSurname: setSurname,
-      getPhone: getPhone,
-      setPhone: setPhone,
-      getEmail: getEmail,
-      setEmail: setEmail,
-      getAge: getAge,
-      setAge: setAge,
-      getCV: getCV,
-      setCV: setCV,
-      setEmployeeID: setEmployeeID,
-      getEmployeeID: getEmployeeID,
-      createProfile: createProfile,
-      clearAllInfo: clearAllInfo,
-    };
-  })();
-  
-  export default CompanyProfile;
-  
+  var createProfile = function (name, address, phone, email, companyId) {
+    this.name = name;
+    this.address = address;
+    this.phone = phone;
+    this.email = email;
+    this.companyId = companyId;
+  };
+
+  var clearAllInfo = function () {
+    this.name = null;
+    this.address = null;
+    this.phone = null;
+    this.email = null;
+    this.companyId = null;
+  };
+
+  var getName = function () {
+    return this.name; // Or pull this from cookie/localStorage
+  };
+
+  var setName = function (name) {
+    this.name = name;
+    // Also set this in cookie/localStorage
+  };
+
+  var getAddress = function () {
+    return this.address; // Or pull this from cookie/localStorage
+  };
+
+  var setAddress = function (address) {
+    this.address = address;
+    // Also set this in cookie/localStorage
+  };
+
+  var getPhone = function () {
+    return this.phone; // Or pull this from cookie/localStorage
+  };
+
+  var setPhone = function (phone) {
+    this.phone = phone;
+    // Also set this in cookie/localStorage
+  };
+
+  var getEmail = function () {
+    return this.email; // Or pull this from cookie/localStorage
+  };
+
+  var setEmail = function (email) {
+    this.email = email;
+    // Also set this in cookie/localStorage
+  };
+
+  var getCompanyID = function () {
+    return this.companyId; // Or pull this from cookie/localStorage
+  };
+
+  var setCompanyID = function (companyId) {
+    this.companyId = companyId;
+    // Also set this in cookie/localStorage
+  };
+
+  return {
+    getName: getName,
+    setName: setName,
+    getAddress: getAddress,
+    setAddress: setAddress,
+    getPhone: getPhone,
+    setPhone: setPhone,
+    getEmail: getEmail,
+    setEmail: setEmail,
+    getCompanyID: getCompanyID,
+    setCompanyID: setCompanyID,
+    createProfile: createProfile,
+    clearAllInfo: clearAllInfo,
+  };
+})();
+
+export default CompanyProfile;

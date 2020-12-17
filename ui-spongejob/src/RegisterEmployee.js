@@ -59,9 +59,7 @@ fetch("http://localhost:8080/employee", {
 };
 
 componentDidMount = () => {
-  setInterval(() => {
-    console.log("" + new Date());
-  }, 1000);
+  
 };
  
   render = () => {

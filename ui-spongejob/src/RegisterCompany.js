@@ -57,9 +57,7 @@ fetch("http://localhost:8080/company", {
 };
 
 componentDidMount = () => {
-  setInterval(() => {
-    console.log("" + new Date());
-  }, 1000);
+  
 };
  
   render = () => {
@@ -90,7 +88,7 @@ componentDidMount = () => {
                   <label> Name  </label>
                   <Form.Input
                     name="name" 
-                    required ="true" 
+                    required ={true}
                     error = {usernameError}
                     value={this.state.name}
                     onChange={this.handleChange}
@@ -102,7 +100,7 @@ componentDidMount = () => {
                   <Form.Input
                     type="password" 
                     name="password"
-                    required
+                    required ={true}
                     error = {passwordError}
                     value={this.state.password}
                     onChange={this.handleChange}
@@ -114,7 +112,7 @@ componentDidMount = () => {
                   <Form.Input
                     type="address" 
                     name="address"
-                    required
+                    required ={true}
                     value={this.state.address}
                     onChange={this.handleChange}
                   />
@@ -124,7 +122,7 @@ componentDidMount = () => {
                   <label> Phone </label>
                   <Form.Input
                     name="phone" 
-                    required ="true"
+                    required ={true}
                     value={this.state.phone}
                     onChange={this.handleChange}
                   />
@@ -134,7 +132,7 @@ componentDidMount = () => {
                   <label> E - mail </label>
                   <Form.Input
                     name="email" 
-                    required ="true"
+                    required ={true}
                     value={this.state.email}
                     onChange={this.handleChange}
                   />
@@ -144,7 +142,7 @@ componentDidMount = () => {
                   <label> E - mail </label>
                   <Form.Input
                     name="username" 
-                    required ="true"
+                    required ={true}
                     value={this.state.username}
                     onChange={this.handleChange}
                   />

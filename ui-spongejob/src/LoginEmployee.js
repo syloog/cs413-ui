@@ -61,7 +61,7 @@ const LoginEmployee = ({ showRegisterLink }) => {
 
             setTimeout(() => {
               history.push("/myapplications");
-            }, 3000);
+            }, 1);
           })
           .catch((e) => {
             toast.error("e.message");
